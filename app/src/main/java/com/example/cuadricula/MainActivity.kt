@@ -65,4 +65,62 @@ fun TopicGrid(modifier: Modifier = Modifier) {
         }
     }
 }
+@Composable
+fun TopicCard(topic: Topic, modifier: Modifier = Modifier) {
+    Card {
+        Row {
+            Box {
+                Image(
+                    painter = painterResource(id = topic.imageRes),
+                    contentDescription = null,
+                    modifier = modifier
+                        .size(width = 68.dp, height = 68.dp)
+                        .aspectRatio(1f),
+                    contentScale = ContentScale.Crop
+                )
+            }
+
+            Column {
+                Text(
+                    text = stringResource(id = topic.name),
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.padding(
+                        start = dimensionResource(R.dimen.padding_medium),
+                        top = dimensionResource(R.dimen.padding_medium),
+                        end = dimensionResource(R.dimen.padding_medium),
+                        bottom = dimensionResource(R.dimen.padding_small)
+                    )
+                )
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_grain),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .padding(start = dimensionResource(R.dimen.padding_medium))
+                    )
+                    Text(
+                        text = topic.availableCourses.toString(),
+                        style = MaterialTheme.typography.labelMedium,
+                        modifier = Modifier.padding(start = dimensionResource(R.dimen.padding_small))
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun TopicPreview() {
+    CuadriculaTheme {
+        val topic = Topic(R.string.photography, 321, R.drawable.photography)
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            TopicCard(topic = topic)
+        }
+    }
+}
 
