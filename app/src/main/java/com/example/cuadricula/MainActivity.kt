@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     TopicGrid(
-                        modifier = Modifier.padding(dimensionResource(R.dimen.padding_small))
+                        modifier = Modifier.padding(8.dp)
                     )
                 }
             }
@@ -56,8 +56,8 @@ class MainActivity : ComponentActivity() {
 fun TopicGrid(modifier: Modifier = Modifier) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small)),
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small)),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
         modifier = modifier
     ) {
         items(DataSource.topics) { topic ->
@@ -83,33 +83,27 @@ fun TopicCard(topic: Topic, modifier: Modifier = Modifier) {
             Column {
                 Text(
                     text = stringResource(id = topic.name),
-                    style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.padding(
-                        start = dimensionResource(R.dimen.padding_medium),
-                        top = dimensionResource(R.dimen.padding_medium),
-                        end = dimensionResource(R.dimen.padding_medium),
-                        bottom = dimensionResource(R.dimen.padding_small)
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.padding( 16.dp,16.dp,16.dp,8.dp)
                     )
-                )
+
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
                         painter = painterResource(R.drawable.ic_grain),
                         contentDescription = null,
                         modifier = Modifier
-                            .padding(start = dimensionResource(R.dimen.padding_medium))
+                            .padding(start = 16.dp)
                     )
                     Text(
                         text = topic.availableCourses.toString(),
                         style = MaterialTheme.typography.labelMedium,
-                        modifier = Modifier.padding(start = dimensionResource(R.dimen.padding_small))
+                        modifier = Modifier.padding(start = 8.dp)
                     )
                 }
             }
         }
     }
 }
-
-
 @Preview(showBackground = true)
 @Composable
 fun TopicPreview() {
